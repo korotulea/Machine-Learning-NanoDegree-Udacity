@@ -43,9 +43,8 @@ class LearningAgent(Agent):
             self.epsilon = 0.0
             self.alpha = 0.0
         else:
-           #self.epsilon += -0.025 
-           #self.epsilon = pow(self.alpha, self.trial)
-           self.epsilon = pow(self.alpha, self.trial/5)
+#           self.epsilon = 1 / pow(self.trial, 2) 
+           self.epsilon = pow(self.alpha, self.trial)
            self.trial += 1
            #print 'self.trial', self.trial
         return None
@@ -59,12 +58,10 @@ class LearningAgent(Agent):
         waypoint = self.planner.next_waypoint() # The next waypoint 
         inputs = self.env.sense(self)           # Visual input - intersection light and traffic
         deadline = self.env.get_deadline(self)  # Remaining deadline
-
-        # This code is for simplified states space         
-        #for k, v in inputs.iteritems():
-        #    if k != 'light' and v != None:
-        #        inputs[k] = 'Other'
-        
+         
+        for k, v in inputs.iteritems():
+            if k != 'light' and v != None:
+                inputs[k] = 'Other'
         inputs['waypoint'] = waypoint
         ########### 
         ## TO DO ##
@@ -155,7 +152,7 @@ class LearningAgent(Agent):
         #   Use only the learning rate 'alpha' (do not use the discount factor 'gamma')
         if self.learning:      
             #self.Q[state][action] = reward # default Q-learning
-            self.Q[state][action] = self.Q[state][action] + self.alpha*(reward - self.Q[state][action]) # smart agent
+            self.Q[state][action] = self.Q[state][action] + self.alpha*(reward - self.Q[state][action])
             #print 'reward', reward
             #print 'self.Q[state]', self.Q[state]
 
@@ -194,9 +191,8 @@ def run():
     #   learning   - set to True to force the driving agent to use Q-learning
     #    * epsilon - continuous value for the exploration factor, default is 1
     #    * alpha   - continuous value for the learning rate, default is 0.5
-    agent = env.create_agent(LearningAgent, learning= True, epsilon=1, alpha=0.95) # smart agent
-    #agent = env.create_agent(LearningAgent, learning= True) # default Q-learning agent
-    #agent = env.create_agent(LearningAgent) # basic agent
+    agent = env.create_agent(LearningAgent, learning= True, epsilon=1, alpha=0.95)
+    
     ##############
     # Follow the driving agent
     # Flags:
@@ -210,16 +206,15 @@ def run():
     #   display      - set to False to disable the GUI if PyGame is enabled
     #   log_metrics  - set to True to log trial and simulation results to /logs
     #   optimized    - set to True to change the default log file name
-    sim = Simulator(env, update_delay=0.01, log_metrics=True, optimized=True) # smart agent
-    #sim = Simulator(env, update_delay=0.01, log_metrics=True) # default Q-learning agent
+    sim = Simulator(env, update_delay=0.01, log_metrics=True, optimized=True)
     
     ##############
     # Run the simulator
     # Flags:
     #   tolerance  - epsilon tolerance before beginning testing, default is 0.05 
     #   n_test     - discrete number of testing trials to perform, default is 0
-    sim.run(tolerance=0.001, n_test=20) # smart agent
-    #sim.run(n_test=10) # default Q-learning agent
+    sim.run(tolerance=0.001, n_test=20)
+
 
 if __name__ == '__main__':
     run()
