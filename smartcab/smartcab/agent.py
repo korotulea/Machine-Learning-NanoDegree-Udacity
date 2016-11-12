@@ -70,7 +70,7 @@ class LearningAgent(Agent):
         # When learning, check if the state is in the Q-table
         #   If it is not, create a dictionary in the Q-table for the current 'state'
         #   For each action, set the Q-value for the state-action pair to 0
-        print inputs
+        #print inputs
         state = tuple(inputs.values())
         
         return state
