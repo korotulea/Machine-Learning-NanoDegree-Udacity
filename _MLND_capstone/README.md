@@ -1,4 +1,6 @@
 # Machine Learning Engineer Nanodegree
+## Alexandru Korotcov
+## January 10, 2017
 ## Specializations: Deep Learning
 ## Project: Recognizing digits and numbers in natural scene images
 
