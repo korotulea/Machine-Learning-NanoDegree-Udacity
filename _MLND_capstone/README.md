@@ -45,4 +45,4 @@ SVHN is a real-world image dataset for developing machine learning and object re
 
 **Note**
 
-Running of the Convolutional Models training in 3_SVHN_dataset_NeuralNets_V2.ipynb may take a long time. All the training in this project were performed using Nvidia Tesla K20 GPU.
+Running Convolutional Neural Netsworks Models from this project may take a long time. All the training for the project were performed using Nvidia Tesla K20 GPU.
