@@ -16,7 +16,8 @@ Following installations are required for this project:
 -   Jupyter Notebook
 
 **Note**
-I recommend use Anaconda installation or Udacity tensorflow on Docker (the most simple approach to install tensorflow)
+
+I recommend to use Anaconda installation or Udacity tensorflow on Docker (the most simple approach to install tensorflow)
 
 (https://github.com/tensorflow/tensorflow/tree/master/tensorflow/examples/udacity)
 
